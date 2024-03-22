@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
 
     // Ask the strategy to the user
     std::string strategy_string;
-    std::cout<<"Choose a strategy between Exponential - Inverse - ApproxLine:\n"<<std::endl;
+    std::cout<<"Choose a strategy between Exponential - Inverse - ApproxLine:"<<std::endl;
     std::cin>>strategy_string;
     Strategy strat=Strategy::ApproxLine;
     if(strategy_string=="Exponential"){
@@ -51,12 +51,24 @@ int main(int argc, char* argv[]){
         strat=Strategy::ApproxLine;
     }
 
-    
-    
+    // Ask how to compute the derivative to the user
+    std::string grad_calc="";
+    std::cout<<"Choose how to compute gradient: Exact - Computed"<<std::endl;
+    std::cin>>grad_calc;
+    while(grad_calc!="Exact" && grad_calc!="Computed"){
+        std::cout<<"ERROR: YOU MUST WRITE EXACT OR COMPUTED"<<std::endl;
+        std::cout<<"Choose how to compute gradient: Exact - Computed"<<std::endl;
+        std::cin>>grad_calc;
+    }
     
     // Solve the problem with the datas
     GradientMethod m(dim,func,grad_func,tol_res,tol_step,max_it,strat);
-    m.solve(x_initial.get_coords(),alpha_init);
+    if(grad_calc=="Exact"){
+        m.solve_exact(x_initial.get_coords(),alpha_init);
+    }
+    else if(grad_calc=="Computed"){
+        m.solve_computed(x_initial.get_coords(),alpha_init);
+    }
 
     // Print the solution
     m.print();

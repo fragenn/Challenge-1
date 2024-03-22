@@ -54,8 +54,9 @@ class GradientMethod{
                        std::vector<MuParserFun> grad_func_,
                        const double tol_res_,const double tol_step_,const unsigned int max_it_,const Strategy & strat_);
         
-        // Solver
-        void solve(const std::vector<double> &initial_guess,double alpha_0);
+        // Solvers
+        void solve_exact(const std::vector<double> &initial_guess,double alpha_0);
+        void solve_computed(const std::vector<double> &initial_guess,double alpha_0);
 
         // Norm of a vector
         double norm(const std::vector<double> &v) const;
