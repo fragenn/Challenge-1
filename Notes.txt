@@ -1,0 +1,6 @@
+README is clear and complete.
+Correct use of GitHub.
+
+The code is well commented and orgnized.
+You could add a control also on the validity of the chosen method.
+I would expect the header files to be collected in an include foalder.
